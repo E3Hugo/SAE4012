@@ -15,15 +15,15 @@
             @csrf
             <div style="margin-bottom: 1.5rem; text-align: left;">
                 <label style="display: block; font-size: 0.875rem; font-weight: 600; margin-bottom: 0.5rem; color: #64748b;">Identifiant</label>
-                <input type="text" name="email" required style="width: 100%; padding: 0.75rem 1rem; border: 1px solid #e2e8f0; border-radius: 0.75rem; font-size: 1rem; background: #f8fafc;">
+                <input type="text" name="email" required style="width: 100%; box-sizing: border-box; padding: 0.75rem 1rem; border: 1px solid #e2e8f0; border-radius: 0.75rem; font-size: 1rem; background: #f8fafc;">
             </div>
             
             <div style="margin-bottom: 2rem; text-align: left;">
                 <label style="display: block; font-size: 0.875rem; font-weight: 600; margin-bottom: 0.5rem; color: #64748b;">Mot de passe</label>
-                <input type="password" name="password" required style="width: 100%; padding: 0.75rem 1rem; border: 1px solid #e2e8f0; border-radius: 0.75rem; font-size: 1rem; background: #f8fafc;">
+                <input type="password" name="password" required style="width: 100%; box-sizing: border-box; padding: 0.75rem 1rem; border: 1px solid #e2e8f0; border-radius: 0.75rem; font-size: 1rem; background: #f8fafc;">
             </div>
 
-            <button type="submit" style="width: 100%; padding: 1rem; background: #1e293b; color: #ffffff; border: none; border-radius: 0.75rem; font-weight: 700; cursor: pointer; transition: background 0.2s;">Se connecter</button>
+            <button type="submit" style="width: 100%; box-sizing: border-box; padding: 1rem; background: #1e293b; color: #ffffff; border: none; border-radius: 0.75rem; font-weight: 700; cursor: pointer; transition: background 0.2s;">Se connecter</button>
         </form>
     </div>
 </div>

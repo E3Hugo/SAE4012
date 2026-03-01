@@ -136,10 +136,9 @@
     <div class="container">
         <h1>Projet Undercover</h1>
         <p class="project-desc">
-            Bienvenue sur notre plateforme de jeu de société en ligne. Ce projet a été réalisé dans le cadre de la 
-            <strong>SAE 4012</strong> (projet universitaire) par un groupe de <strong>3 étudiants</strong>. 
-            L'objectif est de démontrer nos compétences techniques dans le développement d'applications web modernes 
-            avec le framework <strong>Laravel</strong>.
+            Bienvenue sur notre plateforme d'Undercover en ligne, réalisé dans le cadre de la SAE 4012 par 3 étudiants de MMI2 groupe C. 
+            <br>
+            L'objectif est de démontrer nos compétences dans le développement d'applications web avec le framework Laravel.
         </p>
 
         <div class="btn-group">
