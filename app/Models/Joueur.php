@@ -2,11 +2,31 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Model;
+use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Notifications\Notifiable;
 
-class Joueur extends Model
+class Joueur extends Authenticatable
 {
-    protected $fillable = ['pseudo', 'email', 'score_total', 'avatar'];
+    use Notifiable;
+
+    protected $fillable = ['pseudo', 'email', 'password', 'score_total', 'avatar'];
+
+    protected $hidden = [
+        'password',
+        'remember_token',
+    ];
+
+    /**
+     * Get the attributes that should be cast.
+     *
+     * @return array<string, string>
+     */
+    protected function casts(): array
+    {
+        return [
+            'password' => 'hashed',
+        ];
+    }
 
     public function parties()
     {

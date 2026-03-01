@@ -29,6 +29,11 @@
         <input type="file" name="avatar" class="form-control">
     </div>
 
+    <div class="form-group">
+        <label>Mot de passe {{ isset($joueur) ? '(laisser vide pour ne pas changer)' : '' }}</label>
+        <input type="password" name="password" class="form-control" {{ isset($joueur) ? '' : 'required' }}>
+    </div>
+
     <button type="submit" class="btn">Enregistrer</button>
     <a href="{{ route('joueurs.index') }}" class="btn">Annuler</a>
 </form>

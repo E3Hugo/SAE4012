@@ -15,8 +15,10 @@ return new class extends Migration
             $table->id();
             $table->string('pseudo');
             $table->string('email')->unique();
+            $table->string('password');
             $table->integer('score_total')->default(0);
             $table->string('avatar')->nullable();
+            $table->rememberToken();
             $table->timestamps();
         });
     }

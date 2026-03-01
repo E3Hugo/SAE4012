@@ -25,9 +25,12 @@ class JoueurController extends Controller
         $validated = $request->validate([
             'pseudo' => 'required|string|max:255',
             'email' => 'required|email|unique:joueurs,email',
+            'password' => 'required|string|min:6',
             'score_total' => 'nullable|integer',
             'avatar' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
+
+        $validated['password'] = bcrypt($validated['password']);
 
         if ($request->hasFile('avatar')) {
             $path = $request->file('avatar')->store('avatars', 'public');
@@ -55,9 +58,16 @@ class JoueurController extends Controller
         $validated = $request->validate([
             'pseudo' => 'required|string|max:255',
             'email' => 'required|email|unique:joueurs,email,' . $joueur->id,
+            'password' => 'nullable|string|min:6',
             'score_total' => 'nullable|integer',
             'avatar' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
+
+        if (!empty($validated['password'])) {
+            $validated['password'] = bcrypt($validated['password']);
+        } else {
+            unset($validated['password']);
+        }
 
         if ($request->hasFile('avatar')) {
             if ($joueur->avatar) {
