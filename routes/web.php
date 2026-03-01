@@ -7,16 +7,25 @@ use App\Http\Controllers\JoueurController;
 use App\Http\Controllers\PartieController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\AuthJoueurController;
+use App\Http\Controllers\AdminAuthController;
 
-Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
+// --- Public Routes ---
+Route::view('/', 'welcome')->name('welcome');
 
-// Joueur Auth Routes
-Route::get('/login', [AuthJoueurController::class, 'showLoginForm'])->name('login');
-Route::post('/login', [AuthJoueurController::class, 'login']);
-Route::get('/register', [AuthJoueurController::class, 'showRegisterForm'])->name('register');
-Route::post('/register', [AuthJoueurController::class, 'register']);
-Route::post('/logout', [AuthJoueurController::class, 'logout'])->name('logout');
+// --- Joueur Auth Routes ---
+Route::get('/joueur/login', [AuthJoueurController::class, 'showLoginForm'])->name('joueur_login');
+Route::post('/joueur/login', [AuthJoueurController::class, 'login'])->name('joueur.login.submit');
 
+Route::get('/joueur/register', [AuthJoueurController::class, 'showRegisterForm'])->name('joueur_register');
+Route::post('/joueur/register', [AuthJoueurController::class, 'register'])->name('joueur.register.submit');
+
+Route::post('/joueur/logout', [AuthJoueurController::class, 'logout'])->name('logout');
+
+// Legacy redirects for GET requests
+Route::get('/login', fn() => redirect()->route('joueur_login'))->name('login');
+Route::get('/register', fn() => redirect()->route('joueur_register'))->name('register');
+
+// --- Protected Joueur Routes ---
 Route::middleware(['auth:joueur'])->group(function () {
     Route::get('/joueur/profile', [AuthJoueurController::class, 'profile'])->name('joueur.profile');
     Route::get('/joueur/leaderboard', [AuthJoueurController::class, 'leaderboard'])->name('joueur.leaderboard');
@@ -24,6 +33,15 @@ Route::middleware(['auth:joueur'])->group(function () {
     Route::delete('/joueur/delete-account', [AuthJoueurController::class, 'deleteAccount'])->name('joueur.delete_account');
 });
 
-Route::resource('mots', MotController::class);
-Route::resource('joueurs', JoueurController::class);
-Route::resource('parties', PartieController::class);
+// --- Admin Auth Routes ---
+Route::get('/admin/login', [AdminAuthController::class, 'showLoginForm'])->name('admin.login');
+Route::post('/admin/login', [AdminAuthController::class, 'login'])->name('admin.login.submit');
+Route::post('/admin/logout', [AdminAuthController::class, 'logout'])->name('admin.logout');
+
+// --- Protected Admin Routes ---
+Route::middleware(['auth:web'])->group(function () {
+    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+    Route::resource('mots', MotController::class);
+    Route::resource('joueurs', JoueurController::class);
+    Route::resource('parties', PartieController::class);
+});

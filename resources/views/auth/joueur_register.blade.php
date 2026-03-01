@@ -167,7 +167,7 @@
             </div>
         @endif
 
-        <form action="{{ route('register') }}" method="POST">
+        <form action="{{ route('joueur.register.submit') }}" method="POST">
             @csrf
             <div class="form-group">
                 <label for="pseudo">Pseudo</label>

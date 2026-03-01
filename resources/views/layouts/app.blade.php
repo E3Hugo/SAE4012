@@ -148,6 +148,12 @@
                 <li><a href="{{ route('mots.index') }}" class="{{ request()->routeIs('mots.*') ? 'active' : '' }}">Mots</a></li>
                 <li><a href="{{ route('joueurs.index') }}" class="{{ request()->routeIs('joueurs.*') ? 'active' : '' }}">Joueurs</a></li>
                 <li><a href="{{ route('parties.index') }}" class="{{ request()->routeIs('parties.*') ? 'active' : '' }}">Parties</a></li>
+                <li style="margin-top: 2rem;">
+                    <form action="{{ route('admin.logout') }}" method="POST">
+                        @csrf
+                        <button type="submit" class="btn" style="width: 100%; border-color: #ef4444; color: #ef4444;">Déconnexion</button>
+                    </form>
+                </li>
             </ul>
         </nav>
     </aside>
