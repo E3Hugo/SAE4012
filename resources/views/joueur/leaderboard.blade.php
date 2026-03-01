@@ -19,15 +19,15 @@
             <tbody>
                 @foreach($joueurs as $index => $j)
                     <tr style="border-bottom: 1px solid #f1f5f9; transition: background-color 0.2s; {{ $j->id == Auth::guard('joueur')->id() ? 'background-color: #f0f9ff;' : '' }}">
-                        <td style="padding: 1.25rem 1rem;">
+                        <td style="padding: 1.25rem 1rem; font-size: 1.25rem; text-align: center; width: 80px;">
                             @if($index == 0)
-                                <span style="background: #fef3c7; color: #92400e; padding: 0.25rem 0.75rem; border-radius: 1rem; font-weight: 800; font-size: 0.75rem;">🥇 1ER</span>
+                                🥇
                             @elseif($index == 1)
-                                <span style="background: #f1f5f9; color: #475569; padding: 0.25rem 0.75rem; border-radius: 1rem; font-weight: 800; font-size: 0.75rem;">🥈 2EME</span>
+                                🥈
                             @elseif($index == 2)
-                                <span style="background: #ffedd5; color: #9a3412; padding: 0.25rem 0.75rem; border-radius: 1rem; font-weight: 800; font-size: 0.75rem;">🥉 3EME</span>
+                                🥉
                             @else
-                                <span style="font-weight: 600; color: var(--text-muted); padding-left: 0.5rem;">#{{ $index + 1 }}</span>
+                                <span style="font-weight: 600; color: var(--text-muted); font-size: 0.9375rem;">{{ $index + 1 }}</span>
                             @endif
                         </td>
                         <td style="padding: 1.25rem 1rem;">

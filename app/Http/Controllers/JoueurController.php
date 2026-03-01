@@ -22,15 +22,6 @@ class JoueurController extends Controller
 
     public function store(Request $request)
     {
-<<<<<<< HEAD
-        $validated = $request->validate([
-            'pseudo' => 'required|string|max:255',
-            'email' => 'required|email|unique:joueurs,email',
-            'password' => 'required|string|min:6',
-            'score_total' => 'nullable|integer',
-            'avatar' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-        ]);
-=======
         $validated = $request->validate(
             [
                 'pseudo' => [
@@ -41,6 +32,11 @@ class JoueurController extends Controller
                     'required',
                     'email',
                     'unique:joueurs,email'
+                ],
+                'password' => [
+                    'required',
+                    'string',
+                    'min:6'
                 ],
                 'score_total' => [
                     'required',
@@ -61,6 +57,8 @@ class JoueurController extends Controller
                 'email.required' => 'L’email est obligatoire.',
                 'email.email' => 'L’email doit être valide.',
                 'email.unique' => 'Cet email est déjà utilisé.',
+                'password.required' => 'Le mot de passe est obligatoire.',
+                'password.min' => 'Le mot de passe doit faire au moins 6 caractères.',
                 'score_total.required' => 'Le score est obligatoire.',
                 'score_total.integer' => 'Le score doit être un nombre.',
                 'score_total.min' => 'Le score ne peut pas être négatif.',
@@ -69,7 +67,6 @@ class JoueurController extends Controller
                 'avatar.max' => 'L’image ne doit pas dépasser 2 Mo.',
             ]
         );
->>>>>>> 65d7151386e2a090a2014b2df65b63e7f8576075
 
         $validated['password'] = bcrypt($validated['password']);
 
@@ -98,15 +95,6 @@ class JoueurController extends Controller
 
     public function update(Request $request, Joueur $joueur)
     {
-<<<<<<< HEAD
-        $validated = $request->validate([
-            'pseudo' => 'required|string|max:255',
-            'email' => 'required|email|unique:joueurs,email,' . $joueur->id,
-            'password' => 'nullable|string|min:6',
-            'score_total' => 'nullable|integer',
-            'avatar' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-        ]);
-=======
         $validated = $request->validate(
             [
                 'pseudo' => [
@@ -117,6 +105,11 @@ class JoueurController extends Controller
                     'required',
                     'email',
                     Rule::unique('joueurs')->ignore($joueur->id),
+                ],
+                'password' => [
+                    'nullable',
+                    'string',
+                    'min:6'
                 ],
                 'score_total' => [
                     'required',
@@ -137,6 +130,7 @@ class JoueurController extends Controller
                 'email.required' => 'L’email est obligatoire.',
                 'email.email' => 'L’email doit être valide.',
                 'email.unique' => 'Cet email est déjà utilisé.',
+                'password.min' => 'Le mot de passe doit faire au moins 6 caractères.',
                 'score_total.required' => 'Le score est obligatoire.',
                 'score_total.integer' => 'Le score doit être un nombre.',
                 'score_total.min' => 'Le score ne peut pas être négatif.',
@@ -145,7 +139,6 @@ class JoueurController extends Controller
                 'avatar.max' => 'L’image ne doit pas dépasser 2MB.',
             ]
         );
->>>>>>> 65d7151386e2a090a2014b2df65b63e7f8576075
 
         if (!empty($validated['password'])) {
             $validated['password'] = bcrypt($validated['password']);
