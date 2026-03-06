@@ -55,6 +55,8 @@ Route::post('/admin/logout', [AdminAuthController::class, 'logout'])->name('admi
 Route::middleware(['auth:web'])->group(function () {
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
     Route::resource('mots', MotController::class);
+    // Recherche de joueurs (formulaire + résultats)
+    Route::get('/joueurs/search', [JoueurController::class, 'search'])->name('joueurs.search');
     Route::resource('joueurs', JoueurController::class);
     Route::resource('parties', PartieController::class);
 });
